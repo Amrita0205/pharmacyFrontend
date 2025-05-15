@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-gray-800;
+  }
+}
+
+@layer components {
+  .feature-card {
+    @apply bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
+  }
+  .feature-title {
+    @apply text-xl font-semibold text-primary mb-2;
+  }
+  .feature-description {
+    @apply text-gray-600 mb-4;
+  }
+  .stat-card {
+    @apply bg-surface p-4 rounded-md;
+  }
+  .button-primary {
+    @apply bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors;
+  }
+}
