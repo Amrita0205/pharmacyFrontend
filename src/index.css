@@ -6,11 +6,16 @@
   body {
     @apply bg-background text-gray-800;
   }
+  
+  /* Dark mode styles */
+  .bg-dark {
+    @apply bg-gray-900 text-white;
+  }
 }
 
 @layer components {
   .feature-card {
-    @apply bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
+    @apply bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all;
   }
   .feature-title {
     @apply text-xl font-semibold text-primary mb-2;
@@ -23,5 +28,24 @@
   }
   .button-primary {
     @apply bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors;
+  }
+  
+  /* Category card styles */
+  .category-card {
+    @apply bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-center cursor-pointer;
+  }
+  
+  /* Animation utilities */
+  .hover-scale {
+    @apply transform transition-transform duration-300 hover:scale-105;
+  }
+  
+  /* Search box styles */
+  .search-box {
+    @apply relative w-full max-w-2xl mx-auto;
+  }
+  
+  .search-input {
+    @apply w-full px-5 py-3 pl-12 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary shadow-md;
   }
 }
