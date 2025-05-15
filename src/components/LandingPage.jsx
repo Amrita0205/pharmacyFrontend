@@ -21,8 +21,9 @@ export default function LandingPage() {
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-12">
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className={`text-5xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-blue-600'}`}>
-            Welcome to PharmConnect
+          <h1 className={`text-5xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
+           Welcome to <span className="text-blue-600">Pharm</span>
+            Connect!
           </h1>
           <p className={`text-xl mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Your complete pharmacy management solution
@@ -172,9 +173,9 @@ export default function LandingPage() {
       </div>
 
       {/* Dark Mode Toggle */}
-      <div className="fixed bottom-6 right-6 z-10">
+      <div className="fixed bottom-6 right-6 z-10 ">
         <button
-          className={`p-3 rounded-full shadow-lg ${isDarkMode ? 'bg-gray-800 text-yellow-300' : 'bg-white text-gray-800'} hover:shadow-xl transition-all`}
+          className={`p-3 rounded-full shadow-lg ${isDarkMode ? 'bg-gray-800 text-yellow-300' : 'bg-white text-gray-800'} hover:shadow-xl transition-all border-2`}
           onClick={toggleMode}
           aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
           title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
