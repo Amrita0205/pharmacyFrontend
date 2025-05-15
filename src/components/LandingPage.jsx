@@ -1,15 +1,13 @@
+// src/components/LandingPage.jsx
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext'; // Add this import
 import { useState } from 'react';
 
 export default function LandingPage() {
-  const { user } = useAuth(); // Assumes AuthContext is set up
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { user } = useAuth();
+  const { isDarkMode, toggleDarkMode } = useTheme(); // Use ThemeContext
   const [searchQuery, setSearchQuery] = useState('');
-
-  const toggleMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
@@ -22,8 +20,10 @@ export default function LandingPage() {
       <div className="container mx-auto px-4 py-12">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className={`text-5xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
-           Welcome to <span className="text-blue-600">Pharm</span>
-            Connect!
+            Welcome to <span className="text-blue-600">Pharm</span>
+            
+              Connect!
+            
           </h1>
           <p className={`text-xl mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Your complete pharmacy management solution
@@ -36,7 +36,9 @@ export default function LandingPage() {
               placeholder="Search for products..."
               value={searchQuery}
               onChange={handleSearch}
-              className={`w-full px-5 py-3 pl-12 rounded-full border ${isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md`}
+              className={`w-full px-5 py-3 pl-12 rounded-full border ${
+                isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-indigo-300'
+              } focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md transition-all`}
             />
             <div className="absolute left-4 top-3.5 text-gray-500">
               <svg
@@ -62,13 +64,21 @@ export default function LandingPage() {
               <>
                 <Link
                   to="/login"
-                  className="inline-block px-6 py-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all"
+                  className={`inline-block px-6 py-3 rounded-full shadow-lg transition-all ${
+                    isDarkMode
+                      ? 'bg-indigo-700 text-white hover:bg-indigo-600 hover:text-indigo-200'
+                      : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:text-indigo-200'
+                  }`}
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/register"
-                  className={`inline-block px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all ${isDarkMode ? 'bg-transparent border border-blue-500 text-blue-400 hover:bg-blue-900 hover:bg-opacity-30' : 'border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'}`}
+                  className={`inline-block px-6 py-3 rounded-full shadow-lg transition-all ${
+                    isDarkMode
+                      ? 'bg-transparent border border-indigo-500 text-indigo-400 hover:bg-indigo-900 hover:bg-opacity-30 hover:text-indigo-200'
+                      : 'border border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white'
+                  }`}
                 >
                   Create Account
                 </Link>
@@ -76,7 +86,11 @@ export default function LandingPage() {
             ) : (
               <Link
                 to="/dashboard"
-                className="inline-block px-6 py-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all"
+                className={`inline-block px-6 py-3 rounded-full shadow-lg transition-all ${
+                  isDarkMode
+                    ? 'bg-indigo-700 text-white hover:bg-indigo-600 hover:text-indigo-200'
+                    : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:text-indigo-200'
+                }`}
               >
                 Go to Dashboard
               </Link>
@@ -89,12 +103,14 @@ export default function LandingPage() {
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-3 gap-8">
           <div
-            className={`border rounded-xl overflow-hidden transform hover:scale-105 transition-all duration-300 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}
+            className={`border rounded-xl overflow-hidden transform hover:scale-105 transition-all duration-300 ${
+              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-indigo-200'
+            }`}
           >
             <div className="p-6">
-              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-blue-600"
+                  className="w-6 h-6 text-indigo-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -116,12 +132,14 @@ export default function LandingPage() {
             </div>
           </div>
           <div
-            className={`border rounded-xl overflow-hidden transform hover:scale-105 transition-all duration-300 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}
+            className={`border rounded-xl overflow-hidden transform hover:scale-105 transition-all duration-300 ${
+              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-indigo-200'
+            }`}
           >
             <div className="p-6">
-              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-blue-600"
+                  className="w-6 h-6 text-indigo-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -143,12 +161,14 @@ export default function LandingPage() {
             </div>
           </div>
           <div
-            className={`border rounded-xl overflow-hidden transform hover:scale-105 transition-all duration-300 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}
+            className={`border rounded-xl overflow-hidden transform hover:scale-105 transition-all duration-300 ${
+              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-indigo-200'
+            }`}
           >
             <div className="p-6">
-              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-blue-600"
+                  className="w-6 h-6 text-indigo-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -173,10 +193,14 @@ export default function LandingPage() {
       </div>
 
       {/* Dark Mode Toggle */}
-      <div className="fixed bottom-6 right-6 z-10 ">
+      <div className="fixed bottom-6 right-6 z-10">
         <button
-          className={`p-3 rounded-full shadow-lg ${isDarkMode ? 'bg-gray-800 text-yellow-300' : 'bg-white text-gray-800'} hover:shadow-xl transition-all border-2`}
-          onClick={toggleMode}
+          className={`p-3 rounded-full shadow-lg ${
+            isDarkMode ? 'bg-gray-800 text-yellow-300' : 'bg-white text-indigo-800'
+          } hover:shadow-xl transition-all border-2 ${
+            isDarkMode ? 'border-gray-600' : 'border-indigo-300'
+          }`}
+          onClick={toggleDarkMode}
           aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
           title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
         >
@@ -215,18 +239,20 @@ export default function LandingPage() {
       </div>
 
       {/* Categories Section */}
-      <div className={`py-16 px-4 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+      <div className={`py-16 px-4 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
         <div className="container mx-auto">
           <h2 className={`text-3xl font-bold mb-8 text-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
             Popular Categories
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div
-              className={`p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-center cursor-pointer ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-blue-50'}`}
+              className={`p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-center cursor-pointer ${
+                isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-indigo-50'
+              }`}
             >
-              <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-4">
                 <svg
-                  className="w-8 h-8 text-blue-600"
+                  className="w-8 h-8 text-indigo-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -244,11 +270,13 @@ export default function LandingPage() {
               </p>
             </div>
             <div
-              className={`p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-center cursor-pointer ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-blue-50'}`}
+              className={`p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-center cursor-pointer ${
+                isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-indigo-50'
+              }`}
             >
-              <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-4">
                 <svg
-                  className="w-8 h-8 text-blue-600"
+                  className="w-8 h-8 text-indigo-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -266,11 +294,13 @@ export default function LandingPage() {
               </p>
             </div>
             <div
-              className={`p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-center cursor-pointer ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-blue-50'}`}
+              className={`p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-center cursor-pointer ${
+                isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-indigo-50'
+              }`}
             >
-              <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-4">
                 <svg
-                  className="w-8 h-8 text-blue-600"
+                  className="w-8 h-8 text-indigo-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -288,11 +318,13 @@ export default function LandingPage() {
               </p>
             </div>
             <div
-              className={`p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-center cursor-pointer ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-blue-50'}`}
+              className={`p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-center cursor-pointer ${
+                isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-indigo-50'
+              }`}
             >
-              <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-4">
                 <svg
-                  className="w-8 h-8 text-blue-600"
+                  className="w-8 h-8 text-indigo-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

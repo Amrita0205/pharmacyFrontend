@@ -1,12 +1,13 @@
+// src/components/Header.jsx
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { useTheme } from '../contexts/ThemeContext'; // Add this import
+import { useTheme } from '../contexts/ThemeContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useAuth();
-  const { isDarkMode } = useTheme(); // Use ThemeContext for dark mode
+  const { isDarkMode } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,8 +22,8 @@ const Header = () => {
 
   return (
     <header
-      className={`shadow-lg ${
-        isDarkMode ? 'bg-gradient-to-r from-gray-800 to-gray-900' : 'bg-gradient-to-r from-blue-600 to-blue-800'
+      className={`shadow-md ${
+        isDarkMode ? 'bg-gradient-to-r from-gray-900 to-gray-800' : 'bg-gradient-to-r from-indigo-700 to-indigo-900'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -37,10 +38,11 @@ const Header = () => {
               />
             </svg>
             {/* <span
-              className={`text-2xl font-bold text-white  transition-colors`}
-            > */}
-              {/* <span className="text-blue-600"></span> */}
-              {/* PharmConnect
+              className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-white'} hover:${
+                isDarkMode ? 'text-indigo-200' : 'text-indigo-200'
+              } transition-colors`}
+            >
+              <span className="text-blue-600">Pharm</span>Connect
             </span> */}
           </Link>
 
@@ -48,8 +50,8 @@ const Header = () => {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={`md:hidden focus:outline-none ${
-              isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
-            }`}
+              isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
+            } transition-colors`}
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,12 +70,12 @@ const Header = () => {
                 <Link
                   to="/dashboard"
                   className={`${
-                    isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
+                    isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
                   } transition-colors ${
                     location.pathname === '/dashboard'
                       ? isDarkMode
-                        ? 'border-b-2 border-gray-300'
-                        : 'border-b-2 border-white'
+                        ? 'border-b-2 border-indigo-200'
+                        : 'border-b-2 border-indigo-200'
                       : ''
                   }`}
                 >
@@ -82,12 +84,12 @@ const Header = () => {
                 <Link
                   to="/inventory"
                   className={`${
-                    isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
+                    isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
                   } transition-colors ${
                     location.pathname === '/inventory'
                       ? isDarkMode
-                        ? 'border-b-2 border-gray-300'
-                        : 'border-b-2 border-white'
+                        ? 'border-b-2 border-indigo-200'
+                        : 'border-b-2 border-indigo-200'
                       : ''
                   }`}
                 >
@@ -96,12 +98,12 @@ const Header = () => {
                 <Link
                   to="/customers"
                   className={`${
-                    isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
+                    isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
                   } transition-colors ${
                     location.pathname === '/customers'
                       ? isDarkMode
-                        ? 'border-b-2 border-gray-300'
-                        : 'border-b-2 border-white'
+                        ? 'border-b-2 border-indigo-200'
+                        : 'border-b-2 border-indigo-200'
                       : ''
                   }`}
                 >
@@ -110,12 +112,12 @@ const Header = () => {
                 <Link
                   to="/orders"
                   className={`${
-                    isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
+                    isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
                   } transition-colors ${
                     location.pathname === '/orders'
                       ? isDarkMode
-                        ? 'border-b-2 border-gray-300'
-                        : 'border-b-2 border-white'
+                        ? 'border-b-2 border-indigo-200'
+                        : 'border-b-2 border-indigo-200'
                       : ''
                   }`}
                 >
@@ -125,8 +127,8 @@ const Header = () => {
                   onClick={handleLogout}
                   className={`px-4 py-2 rounded-lg shadow-md transition-colors ${
                     isDarkMode
-                      ? 'bg-gray-700 text-gray-100 hover:bg-gray-600'
-                      : 'bg-blue-700 text-white hover:bg-blue-600'
+                      ? 'bg-gray-700 text-white hover:bg-gray-600 hover:text-indigo-200'
+                      : 'bg-indigo-800 text-white hover:bg-indigo-700 hover:text-indigo-200'
                   }`}
                 >
                   Logout
@@ -137,7 +139,7 @@ const Header = () => {
                 <Link
                   to="/login"
                   className={`${
-                    isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
+                    isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
                   } transition-colors`}
                 >
                   Login
@@ -146,8 +148,8 @@ const Header = () => {
                   to="/register"
                   className={`px-4 py-2 rounded-lg shadow-md transition-colors ${
                     isDarkMode
-                      ? 'bg-gray-700 text-gray-100 hover:bg-gray-600'
-                      : 'bg-blue-700 text-white hover:bg-blue-600'
+                      ? 'bg-gray-700 text-white hover:bg-gray-600 hover:text-indigo-200'
+                      : 'bg-indigo-800 text-white hover:bg-indigo-700 hover:text-indigo-200'
                   }`}
                 >
                   Register
@@ -161,7 +163,7 @@ const Header = () => {
         {isMenuOpen && (
           <nav
             className={`md:hidden py-4 border-t transition-all duration-300 ${
-              isDarkMode ? 'border-gray-600' : 'border-blue-500'
+              isDarkMode ? 'border-gray-600' : 'border-indigo-600'
             }`}
           >
             {user ? (
@@ -169,7 +171,7 @@ const Header = () => {
                 <Link
                   to="/dashboard"
                   className={`${
-                    isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
+                    isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
                   } transition-colors ${location.pathname === '/dashboard' ? 'font-bold' : ''}`}
                 >
                   Dashboard
@@ -177,7 +179,7 @@ const Header = () => {
                 <Link
                   to="/inventory"
                   className={`${
-                    isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
+                    isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
                   } transition-colors ${location.pathname === '/inventory' ? 'font-bold' : ''}`}
                 >
                   Inventory
@@ -185,7 +187,7 @@ const Header = () => {
                 <Link
                   to="/customers"
                   className={`${
-                    isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
+                    isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
                   } transition-colors ${location.pathname === '/customers' ? 'font-bold' : ''}`}
                 >
                   Customers
@@ -193,7 +195,7 @@ const Header = () => {
                 <Link
                   to="/orders"
                   className={`${
-                    isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
+                    isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
                   } transition-colors ${location.pathname === '/orders' ? 'font-bold' : ''}`}
                 >
                   Orders
@@ -202,8 +204,8 @@ const Header = () => {
                   onClick={handleLogout}
                   className={`px-4 py-2 rounded-lg shadow-md transition-colors w-full ${
                     isDarkMode
-                      ? 'bg-gray-700 text-gray-100 hover:bg-gray-600'
-                      : 'bg-blue-700 text-white hover:bg-blue-600'
+                      ? 'bg-gray-700 text-white hover:bg-gray-600 hover:text-indigo-200'
+                      : 'bg-indigo-800 text-white hover:bg-indigo-700 hover:text-indigo-200'
                   }`}
                 >
                   Logout
@@ -214,7 +216,7 @@ const Header = () => {
                 <Link
                   to="/login"
                   className={`${
-                    isDarkMode ? 'text-gray-100 hover:text-gray-300' : 'text-white hover:text-blue-100'
+                    isDarkMode ? 'text-white hover:text-indigo-200' : 'text-white hover:text-indigo-200'
                   } transition-colors`}
                 >
                   Login
@@ -223,8 +225,8 @@ const Header = () => {
                   to="/register"
                   className={`px-4 py-2 rounded-lg shadow-md transition-colors text-center ${
                     isDarkMode
-                      ? 'bg-gray-700 text-gray-100 hover:bg-gray-600'
-                      : 'bg-blue-700 text-white hover:bg-blue-600'
+                      ? 'bg-gray-700 text-white hover:bg-gray-600 hover:text-indigo-200'
+                      : 'bg-indigo-800 text-white hover:bg-indigo-700 hover:text-indigo-200'
                   }`}
                 >
                   Register
